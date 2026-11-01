@@ -1,0 +1,10 @@
+.git
+.tools
+.npm-cache
+.env*
+test-output
+tests
+supabase
+node_modules
+dist
+*.md

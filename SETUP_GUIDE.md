@@ -1,6 +1,6 @@
 # Setup guide — free starting accounts
 
-This is an advance guide. There is no frontend to deploy yet. Complete account setup when ready, and keep ordering closed during implementation. Do not change the existing Ssupertea system.
+This guide was drafted during planning. The owner has since connected the plugins and supplied the menu and shop pin. A partial frontend now exists; consult [PARTIAL_SETUP.md](PARTIAL_SETUP.md) for the exact current linkage and apply order. Keep ordering closed during implementation. Do not change the existing Ssupertea system.
 
 ## 1. Create a dedicated Supabase project
 
@@ -54,7 +54,7 @@ For a rider, use role `rider`. Do not create staff roles by changing user profil
 
 1. Create/sign in to [GitHub](https://github.com/) and [Vercel](https://vercel.com/). Enable MFA for both owner accounts. Keep the repository private if desired.
 2. When the frontend is ready, push a reviewed project to GitHub with `.env`, secrets, and private customer data excluded.
-3. Import the repository into Vercel. The proposed frontend is a Vite static app; its future build command is `npm run build` and output directory `dist`. Those scripts are not present in this planning-only repository yet.
+3. After confirming the destination project, import/link the repository in Vercel. The implemented frontend is a Vite static app; its build command is `npm run build` and output directory `dist`, declared in `vercel.json`.
 4. Configure only the public Supabase variables above in the intended Vercel environments, then build. A new deployment is needed after changing build-time `VITE_*` values.
 5. Use the assigned `*.vercel.app` URL initially. Add exact Supabase redirect URLs and complete Google OAuth setup for the actual deployment address.
 6. Later, add the purchased domain in Vercel, configure its DNS as instructed, and update Supabase's Site URL/redirect allowlist and any applicable Google origins. Keep a rollback address available during the transition.

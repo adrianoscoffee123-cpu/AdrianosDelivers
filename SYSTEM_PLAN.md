@@ -2,6 +2,8 @@
 
 Prepared November 1, 2026. Vercel remains the requested hosting target; a custom domain can be added later. The user will supply the menu and shop location. Pricing and coverage below are proposals to review, not published business rules.
 
+**Progress update:** the owner has now supplied nine menu images and the pin `10.423282164368267, 122.91901469110203`. The real menu storefront and catalog database update are implemented locally. See [PARTIAL_SETUP.md](PARTIAL_SETUP.md) for the current status; the build sequence and pending-input list below describe the original plan and should be read with that update. Delivery rules remain unapproved.
+
 ## What we will build
 
 A mobile-friendly website for one Adriano’s branch, with a familiar food delivery flow inspired by Grab/Foodpanda and the supplied Ssupertea reference:

@@ -1,2 +1,18 @@
 # AdrianosDelivers
 
+Adriano’s delivery system — partial setup with ordering closed.
+
+The owner-supplied menu contains **126 products and 170 priced size/flavor choices**. The storefront supports search, categories, item selection, a saved bag, original menu photos, and directions to the confirmed La Carlota store location.
+
+See [PARTIAL_SETUP.md](PARTIAL_SETUP.md) for connection status and the database/deployment steps, and [MENU_REVIEW.md](MENU_REVIEW.md) for the complete menu transcription and items that need clarification.
+
+```sh
+npm ci
+npm test
+npm run build
+```
+
+The production build is in `dist/`. Optional connected mode uses only `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Checkout remains disabled in this partial release. Supabase migrations and the official catalog seed must be reviewed against the intended dedicated project before applying. Do not use the old sample menu seed for the real catalog.
+
+Local database and interface checks pass; live Supabase, Google OAuth, Vercel deployment, actual browser layout and phone behavior have not yet been verified.
+

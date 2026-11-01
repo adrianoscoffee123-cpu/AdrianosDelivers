@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile,readdir } from 'node:fs/promises';
 import { PGlite } from '@electric-sql/pglite';
 
 test('delivery database permissions, prices, workflow, and GPS privacy', async t => {
@@ -12,7 +12,9 @@ test('delivery database permissions, prices, workflow, and GPS privacy', async t
     create function auth.jwt() returns jsonb language sql stable as $$ select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb $$;
     grant usage on schema public,auth to anon,authenticated;
     grant execute on function auth.uid(),auth.jwt() to anon,authenticated;`);
-  await db.exec(await readFile(new URL('../supabase/migrations/001_delivery.sql',import.meta.url),'utf8'));
+  for(const migration of (await readdir(new URL('../supabase/migrations/',import.meta.url))).filter(f=>f.endsWith('.sql')).sort()){
+    await db.exec(await readFile(new URL(`../supabase/migrations/${migration}`,import.meta.url),'utf8'));
+  }
   for (const id of Object.values(ids)) await db.query('insert into auth.users(id) values($1)',[id]);
   await db.query("insert into public.staff_users(user_id,display_name,role) values($1,'Store Admin','admin'),($2,'Rider One','rider'),($3,'Rider Two','rider')",[ids.admin,ids.rider,ids.rider2]);
   const product = (await db.query("insert into public.menu_items(name,category,price,active) values('Test Meal','Meals',100,true) returning id")).rows[0].id;
