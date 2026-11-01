@@ -1,0 +1,85 @@
+{
+  "project": "Adriano’s delivery system",
+  "timezone": "Asia/Manila",
+  "baselineDate": "2026-11-01",
+  "weekStart": "2026-11-02",
+  "targetDeploymentDate": "2026-11-08",
+  "updatedOn": "2026-11-01",
+  "currentPhase": "foundation_complete",
+  "nextMilestone": "D1",
+  "previewUrl": "https://adrianosdelivers-pg3i0dide-adrianos1.vercel.app",
+  "reviewBranch": "setup/menu-preview",
+  "statusValues": ["planned", "in_progress", "review", "done", "blocked"],
+  "baseline": [
+    {
+      "id": "F1", "title": "Provider connections and GitHub publication", "status": "done",
+      "evidence": ["Supabase tewizylumylcvokweveh linked", "Vercel adrianos1/adrianosdelivers linked", "GitHub review branch pushed and remote commit b59b709 verified"]
+    },
+    {
+      "id": "F2", "title": "Real menu and protected database foundation", "status": "done",
+      "evidence": ["126 products and 170 priced choices imported", "Confirmed shop pin stored", "All six application tables have RLS", "Anonymous order read denied with HTTP 401", "Supabase advisors show no warning-level findings", "Ordering closed and zero menu choices active for checkout"]
+    },
+    {
+      "id": "F3", "title": "Connected menu preview and baseline checks", "status": "done",
+      "evidence": ["Protected Vercel preview READY", "Browser displays Supabase-loaded prices", "Two 22 oz iced Spanish Lattes total PHP 260", "17 automated checks pass", "Browser console has no warnings or errors"]
+    }
+  ],
+  "decisions": [
+    {"id":"R1","title":"Delivery coverage, fee, minimum order, hours and contact","owner":"store_owner","due":"2026-11-02","status":"pending","answer":null},
+    {"id":"R2","title":"Packaging policy, unclear servings and drink-extra compatibility","owner":"store_owner","due":"2026-11-02","status":"pending","answer":null},
+    {"id":"R3","title":"Authorized admin and rider names/emails, test customers and cash process","owner":"store_owner","due":"2026-11-02","status":"pending","answer":null},
+    {"id":"R4","title":"Google OAuth setup, test users and readiness for intended audience","owner":"store_owner_with_assistant","due":"2026-11-02","status":"pending","answer":null},
+    {"id":"R5","title":"Eligible commercial hosting within the owner's budget","owner":"store_owner","due":"2026-11-02","status":"pending","answer":null}
+  ],
+  "milestones": [
+    {
+      "id":"D1","date":"2026-11-02","title":"Rules and sign-in","status":"planned","dependsOn":["F3"],"decisionDependencies":["R1","R2","R3","R4","R5"],
+      "assistantWork":["Record approved policies and keep ordering closed","Guide Google OAuth and exact redirect configuration","Verify customer sign-in and sign-out","Create explicitly authorized admin/rider grants and verify role isolation"],
+      "ownerWork":["Provide delivery rules, hours, public contact and packaging decisions","Provide staff/test-account identities and confirm who may manage orders","Complete Google provider steps in the dashboard","Decide an eligible commercial hosting arrangement without an unapproved paid upgrade"],
+      "acceptance":["Approved business rules recorded with no guessed live fees","Customer, admin and rider test accounts can sign in and out","Customer cannot obtain a staff role","Hosting and Google audience launch dependencies have a documented resolution or blocker"],
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D2","date":"2026-11-03","title":"Secure checkout","status":"planned","dependsOn":["D1"],"decisionDependencies":["R1","R2"],
+      "assistantWork":["Build pickup/delivery form, manual address and destination map pin","Map selected catalog choices to database IDs","Implement server-validated extras, packaging and final quote","Submit orders through the trusted idempotent RPC","Add customer receipt/history and pending-order cancellation"],
+      "ownerWork":["Review item/extra combinations and the exact cash total","Test one pickup and one in-area delivery using designated test data"],
+      "acceptance":["Pickup has no delivery fee; delivery and packaging follow approved rules","Outside-coverage orders are rejected by the server","Price tampering, invalid extras and duplicate submissions are rejected or handled safely","Customer sees only their own order and the correct size/flavor snapshot"],
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D3","date":"2026-11-04","title":"Store admin","status":"planned","dependsOn":["D2"],"decisionDependencies":["R3"],
+      "assistantWork":["Build new/active order queue and order details","Add accept, prepare, ready, cancel and rider-assignment controls","Complete pickup handover flow","Add menu availability and controlled open/close settings","Show status history and handle conflicting staff updates"],
+      "ownerWork":["Review queue with the person who handles orders","Confirm cancellation, closed-store and sold-out behavior"],
+      "acceptance":["An authorized admin processes both test fulfillment types","Unauthorized accounts cannot read/manage the queue","Only valid state transitions succeed","Closed store and inactive items cannot accept new orders"],
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D4","date":"2026-11-05","title":"Rider workflow","status":"planned","dependsOn":["D3"],"decisionDependencies":["R3"],
+      "assistantWork":["Build assigned-delivery list and customer/destination details","Add external navigation and cash amount display","Start delivery only for the authorized assigned rider after readiness","Complete handover and cash confirmation","Document reassignment and failed-delivery handling"],
+      "ownerWork":["Have at least one rider test on a real phone","Confirm cash collection and return-to-store procedure"],
+      "acceptance":["Two rider accounts are isolated from each other's assignments","Assigned rider can start/complete the correct order only","Rider access to customer details ends on completion/cancellation","Pickup orders cannot enter the rider delivery flow"],
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D5","date":"2026-11-06","title":"Live tracking","status":"planned","dependsOn":["D4"],"decisionDependencies":[],
+      "assistantWork":["Add explicit foreground GPS start/stop controls and map attribution","Enable same-origin geolocation only where the implemented flow requires it","Show latest authorized rider location and update age","Connect order-status/GPS updates with reconnect and manual-refresh fallback","Hide stale or inaccurate fixes and remove tracking when a delivery closes"],
+      "ownerWork":["Test with rider phone and a separate customer phone","Try denied permission, weak signal and a locked screen"],
+      "acceptance":["Customer/admin see the assigned delivery's latest authorized position","GPS denial or background interruption is clearly indicated","No background/locked-screen GPS guarantee or invented road ETA is shown","Location disappears after stop-sharing, completion, cancellation and sign-out"] ,
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D6","date":"2026-11-07","title":"Phone pilot and fixes","status":"planned","dependsOn":["D2","D3","D4","D5"],"decisionDependencies":[],
+      "assistantWork":["Run role-isolation, price, status, GPS and connection-failure checks","Complete one real-phone pickup and delivery with designated test users","Fix critical/high-severity failures and rerun affected checks","Finish public support/privacy text and store/rider instructions","Prepare release candidate, backup/restore procedure and rollback plan"],
+      "ownerWork":["Reserve 2–3 hours with staff, rider and a second customer phone","Accept the workflow or report specific failures","Confirm support contact, data handling and failed-delivery process"],
+      "acceptance":["Customer → store → rider → customer flow passes on actual phones","No unresolved critical/high-severity security, total, payment or order-loss issue","Public support/privacy information is complete","Owner reviews a specific tested release candidate"],
+      "evidence":[],"blockers":[]
+    },
+    {
+      "id":"D7","date":"2026-11-08","title":"Deployment and handover","status":"planned","dependsOn":["D6"],"decisionDependencies":["R4","R5"],
+      "assistantWork":["Verify exact release commit, migrations, production configuration and rollback target","Deploy to the approved production host with ordering initially closed","Update final-domain OAuth URLs and verify HTTPS/security headers","Run signed-in role and order smoke checks on the production URL","Enable only approved menu availability and open ordering after launch checks pass","Document final URL, operations, backup and rollback steps"],
+      "ownerWork":["Confirm the launch decision for the tested release","Keep staff/rider available for first-order checks","Review first orders, cash totals and support readiness"],
+      "acceptance":["Hosting permits the intended business use and audience","Production sign-in, quote, order and authorized delivery checks pass","Menu/fees/hours/contact match approved rules","Rollback and emergency store-close steps are available","Owner receives the working URL and operating guide"],
+      "evidence":[],"blockers":[]
+    }
+  ]
+}

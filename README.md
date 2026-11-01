@@ -6,6 +6,8 @@ The owner-supplied menu contains **126 products and 170 priced size/flavor choic
 
 See [PARTIAL_SETUP.md](PARTIAL_SETUP.md) for connection status and the database/deployment steps, and [MENU_REVIEW.md](MENU_REVIEW.md) for the complete menu transcription and items that need clarification.
 
+The current work plan is [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md): seven workdays, November 2–8, 2026 (Asia/Manila), targeting final deployment on November 8 subject to release checks. Follow [PROJECT_PROGRESS.md](PROJECT_PROGRESS.md) for daily milestones and owner decisions. Edit status/evidence in [PROJECT_TRACKER.json](PROJECT_TRACKER.json), then run `node scripts/project-progress.mjs` to refresh the board and Gantt source.
+
 ```sh
 npm ci
 npm test
