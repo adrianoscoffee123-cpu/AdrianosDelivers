@@ -2,6 +2,8 @@
 
 Planning baseline: **November 1, 2026**. Seven workdays: **Monday, November 2 through Sunday, November 8, 2026**, Asia/Manila. Target: a tested first release deployed on **November 8**. Today’s planning/setup is the starting point; tomorrow is Day 1.
 
+**Workflow update:** the owner requests future implementation updates on GitHub `main` and Vercel **production**, with an extra branch only when crucial and a preview only when needed. Follow [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md); this supersedes the earlier routine preview/feature-branch approach. Deployments before launch keep ordering closed.
+
 This is a target schedule with daily acceptance checks. It assumes focused implementation sessions each day, owner decisions by Day 1, access to the provider accounts, and staff/phones available for the Day 6 pilot. A provider approval delay or unresolved critical failure changes the launch date; it does not justify opening an unsafe or unfinished checkout.
 
 ## Current progress
@@ -35,7 +37,7 @@ Rules and test sign-in are on the checkout critical path. Hosting and public OAu
 
 ## Gantt chart
 
-The schedule includes weekend work. Each primary row is one daily milestone; testing and preview review also happen as each feature is built.
+The schedule includes weekend work. Each primary row is one daily milestone; testing and daily review also happen as each feature is built.
 
 <!-- gantt:start -->
 ```mermaid
@@ -54,7 +56,7 @@ gantt
     Phone pilot and fixes :d6, 2026-11-07, 1d
     Deployment and handover :d7, 2026-11-08, 1d
     section Continuous work
-    Checks and preview reviews :checks, 2026-11-02, 6d
+    Checks and daily reviews :checks, 2026-11-02, 6d
     Store and rider guide :guide, 2026-11-06, 2d
 ```
 <!-- gantt:end -->
@@ -173,13 +175,13 @@ For each finished feature:
 
 1. Implement the smallest complete flow using the existing architecture.
 2. Run meaningful checks for the change, plus the required test/build checks. Do not add UI-only fake success states for backend operations.
-3. Commit/push reviewed changes to the current integration branch or a short feature branch. Publish a protected preview for feature review. Record the exact URL and commit.
+3. Reconcile the existing setup work into `main` for the first tested implementation release, then commit/push tested implementation updates to `main` and deploy Vercel production. Use an extra branch only when crucial and a preview only when needed. Record the exact URL and commit. Documentation-only updates do not need another app deployment.
 4. Review the feature with the owner against its acceptance list.
 5. Update status, evidence, failures and next action; regenerate the progress board.
 
 At the end of the day, report five things: **completed IDs; preview/commit; checks passed/failed; blockers/owner actions; next milestone**. This is a working agreement, not an automatically scheduled reminder or background task.
 
-The current integration branch is `setup/menu-preview`. Keep the production branch/release controlled until Day 7 checks pass. Never merge a failing change, apply an unreviewed migration to another project, purchase a service automatically, or open ordering merely to meet a date.
+The existing setup branch is `setup/menu-preview`; `main` is the default for future implementation updates. Production deployments can present the closed store while features are completed. Opening real orders remains gated by the Day 7 launch checks. Never merge a failing change, apply an unreviewed migration to another project, purchase a service automatically, or open ordering merely to meet a date.
 
 ## Final release checklist
 

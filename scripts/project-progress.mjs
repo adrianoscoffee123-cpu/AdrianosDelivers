@@ -26,7 +26,7 @@ lines.push('This board is generated from PROJECT_TRACKER.json. Update that track
 await writeFile(new URL('PROJECT_PROGRESS.md',root),lines.join('\n')+'\n');
 const gantt=['gantt','    title Adriano’s delivery system — November 2–8, 2026','    dateFormat YYYY-MM-DD','    axisFormat %b %d','    tickInterval 1day','    todayMarker off','    section Seven-day rollout'];
 for(const item of data.milestones){const flag=item.status==='done'?'done, ':item.status==='in_progress'?'active, ':'';gantt.push(`    ${item.title} :${flag}${item.id.toLowerCase()}, ${item.date}, 1d`);}
-gantt.push('    section Continuous work','    Checks and preview reviews :checks, 2026-11-02, 6d','    Store and rider guide :guide, 2026-11-06, 2d');
+gantt.push('    section Continuous work','    Checks and daily reviews :checks, 2026-11-02, 6d','    Store and rider guide :guide, 2026-11-06, 2d');
 await writeFile(new URL('PROJECT_GANTT.mmd',root),gantt.join('\n')+'\n');
 const roadmapUrl=new URL('PROJECT_ROADMAP.md',root);
 const roadmap=await readFile(roadmapUrl,'utf8');

@@ -8,7 +8,12 @@
   "currentPhase": "foundation_complete",
   "nextMilestone": "D1",
   "previewUrl": "https://adrianosdelivers-pg3i0dide-adrianos1.vercel.app",
-  "reviewBranch": "setup/menu-preview",
+  "currentBranch": "main",
+  "historicalSetupBranch": "setup/menu-preview",
+  "defaultWorkBranch": "main",
+  "defaultDeploymentTarget": "production",
+  "additionalBranchPolicy": "only_when_crucial",
+  "previewPolicy": "none_by_default_create_only_if_explicitly_requested_or_crucial",
   "statusValues": ["planned", "in_progress", "review", "done", "blocked"],
   "baseline": [
     {

@@ -8,6 +8,8 @@ See [PARTIAL_SETUP.md](PARTIAL_SETUP.md) for connection status and the database/
 
 The current work plan is [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md): seven workdays, November 2–8, 2026 (Asia/Manila), targeting final deployment on November 8 subject to release checks. Follow [PROJECT_PROGRESS.md](PROJECT_PROGRESS.md) for daily milestones and owner decisions. Edit status/evidence in [PROJECT_TRACKER.json](PROJECT_TRACKER.json), then run `node scripts/project-progress.mjs` to refresh the board and Gantt source.
 
+Follow [PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md): future tested implementation updates go to GitHub `main` and Vercel production. Extra branches are reserved for crucial cases, and previews are used only when needed. Ordering stays closed until launch checks pass.
+
 ```sh
 npm ci
 npm test
