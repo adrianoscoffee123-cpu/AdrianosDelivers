@@ -13,7 +13,8 @@
   "github": {
     "repository": "https://github.com/adrianoscoffee123-cpu/AdrianosDelivers",
     "owner": "adrianoscoffee123-cpu",
-    "reviewBranch": "setup/menu-preview"
+    "reviewBranch": "setup/menu-preview",
+    "branchPublished": true
   },
   "orderingEnabled": false
 }
