@@ -29,6 +29,8 @@ The owner has confirmed the targets: Supabase **Adriano's delivers**, Vercel **a
 
 Then either expose the connected provider tools in the chat/session, or authenticate the local provider CLIs using their normal browser flows. The local CLI binaries are installed in the ignored `.tools/` directory. Complete authentication directly with the provider; credentials are not part of this repository.
 
+For the current Windows workspace, run `scripts/connect-accounts.ps1` in an interactive PowerShell terminal. It signs into the three providers sequentially with their official CLIs, stops on failure, and does not mutate cloud projects. Enter the Supabase verification code in that terminal rather than chat. The earlier background sign-in attempts were cancelled so they do not compete with this flow. If PowerShell blocks script execution under the computer’s policy, run the three displayed provider login commands manually rather than weakening the policy.
+
 Before any change, inspect the project name and existing schema. Do not reuse the Ssupertea database or the existing Adriano’s reporting/POS database without confirming a deliberate migration plan. If multiple possible projects are present, select the dedicated delivery project first. No paid resources or additional projects should be created by default.
 
 ## Supabase apply order, once the target is verified
