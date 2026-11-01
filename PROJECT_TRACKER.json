@@ -7,7 +7,7 @@
   "updatedOn": "2026-11-01",
   "currentPhase": "foundation_complete",
   "nextMilestone": "D1",
-  "previewUrl": "https://adrianosdelivers-pg3i0dide-adrianos1.vercel.app",
+  "productionUrl": "https://adrianosdelivers.vercel.app",
   "currentBranch": "main",
   "historicalSetupBranch": "setup/menu-preview",
   "defaultWorkBranch": "main",
@@ -25,8 +25,8 @@
       "evidence": ["126 products and 170 priced choices imported", "Confirmed shop pin stored", "All six application tables have RLS", "Anonymous order read denied with HTTP 401", "Supabase advisors show no warning-level findings", "Ordering closed and zero menu choices active for checkout"]
     },
     {
-      "id": "F3", "title": "Connected menu preview and baseline checks", "status": "done",
-      "evidence": ["Protected Vercel preview READY", "Browser displays Supabase-loaded prices", "Two 22 oz iced Spanish Lattes total PHP 260", "17 automated checks pass", "Browser console has no warnings or errors"]
+      "id": "F3", "title": "Connected menu and baseline checks", "status": "done",
+      "evidence": ["Working production menu at https://adrianosdelivers.vercel.app with ordering closed", "All six Vercel preview deployments removed; inventory confirms zero remaining", "GitHub main contains the tested setup", "Production HTTP check returns 200 and the closed-ordering notice", "Earlier browser checks verified Supabase pricing and PHP 260 for two 22 oz iced Spanish Lattes", "17 automated checks pass"]
     }
   ],
   "decisions": [

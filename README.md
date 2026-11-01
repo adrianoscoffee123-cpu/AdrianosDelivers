@@ -18,5 +18,5 @@ npm run build
 
 The production build is in `dist/`. Optional connected mode uses only `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Checkout remains disabled in this partial release. Supabase migrations and the official catalog seed must be reviewed against the intended dedicated project before applying. Do not use the old sample menu seed for the real catalog.
 
-All 17 automated checks pass. The live Supabase catalog and protected Vercel preview are connected and browser-verified. The partial setup is pushed to GitHub on `setup/menu-preview`. Google OAuth, live checkout, admin/rider screens, GPS and phone testing remain pending. See PARTIAL_SETUP.md for the current preview URL and setup results.
+All 17 automated checks pass. The tested setup is on GitHub `main`, and the production menu is at https://adrianosdelivers.vercel.app with ordering closed. All six Vercel previews were deleted and zero remain. The Supabase catalog and menu flow were browser-verified before the production transition; production HTTP checks pass. Google OAuth, live checkout, admin/rider screens, GPS and phone testing remain pending.
 

@@ -10,7 +10,7 @@ Next milestone: **D1**. No future milestone is marked complete merely because it
 
 - **F1: Provider connections and GitHub publication — done.** Supabase tewizylumylcvokweveh linked; Vercel adrianos1/adrianosdelivers linked; GitHub review branch pushed and remote commit b59b709 verified.
 - **F2: Real menu and protected database foundation — done.** 126 products and 170 priced choices imported; Confirmed shop pin stored; All six application tables have RLS; Anonymous order read denied with HTTP 401; Supabase advisors show no warning-level findings; Ordering closed and zero menu choices active for checkout.
-- **F3: Connected menu preview and baseline checks — done.** Protected Vercel preview READY; Browser displays Supabase-loaded prices; Two 22 oz iced Spanish Lattes total PHP 260; 17 automated checks pass; Browser console has no warnings or errors.
+- **F3: Connected menu and baseline checks — done.** Working production menu at https://adrianosdelivers.vercel.app with ordering closed; All six Vercel preview deployments removed; inventory confirms zero remaining; GitHub main contains the tested setup; Production HTTP check returns 200 and the closed-ordering notice; Earlier browser checks verified Supabase pricing and PHP 260 for two 22 oz iced Spanish Lattes; 17 automated checks pass.
 
 ## Weekly board
 

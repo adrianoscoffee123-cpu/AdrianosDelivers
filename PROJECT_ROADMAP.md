@@ -10,13 +10,13 @@ This is a target schedule with daily acceptance checks. It assumes focused imple
 
 The three foundation gates are complete. **None of the seven remaining daily milestones has been completed yet.** Gate counts do not represent a percentage of development effort.
 
-- Supabase, Vercel and GitHub are authenticated and linked. The current work is pushed on `setup/menu-preview`.
+- Supabase, Vercel and GitHub are authenticated and linked. The tested setup is pushed on `main`.
 - Real menu: 126 products and 170 priced choices, with the supplied shop pin stored.
 - Database/RPC foundation: roles, RLS, trusted pricing, status transitions, idempotency and restricted GPS writes. Live anonymous order reads are denied. Supabase advisors have no warning-level findings.
-- The protected preview loads prices from Supabase. Search, categories, size/flavor selection and a saved local bag work. All 17 existing checks pass.
+- The production menu is deployed with ordering closed. Earlier browser checks verified Supabase-loaded prices, search, categories, size/flavor selection and a saved local bag. All 17 existing checks pass. All Vercel preview deployments have been removed.
 - Ordering is closed and menu choices are inactive for checkout. Google customer sign-in, the checkout interface, staff screens, rider screens and live tracking are the remaining work.
 
-Preview: https://adrianosdelivers-pg3i0dide-adrianos1.vercel.app
+Production menu: https://adrianosdelivers.vercel.app
 
 Current roadmap status: [PROJECT_PROGRESS.md](PROJECT_PROGRESS.md). Editable status/evidence source: [PROJECT_TRACKER.json](PROJECT_TRACKER.json). Chart source: [PROJECT_GANTT.mmd](PROJECT_GANTT.mmd).
 
