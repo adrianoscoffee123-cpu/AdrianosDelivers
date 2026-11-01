@@ -5,6 +5,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { products,categories,shop } from '../data/menu.js';
 import { basketLines,hydrateBasket,filterProducts,mapUrl,escapeHtml } from '../src/catalog.js';
 import { validatePublicConfig } from '../scripts/public-config.mjs';
+import { execFileSync } from 'node:child_process';
 
 test('all nine pages transcribe to unique, priced choices',()=>{
   assert.equal(products.length,126);assert.equal(categories.length,22);
@@ -32,12 +33,20 @@ test('search, categories, safe text, and confirmed shop directions',()=>{
 test('build-time configuration rejects private credentials and invalid destinations',()=>{
   const env={VITE_SUPABASE_URL:'https://project.supabase.co',VITE_SUPABASE_PUBLISHABLE_KEY:'sb_publishable_example'};
   assert.doesNotThrow(()=>validatePublicConfig({}));assert.doesNotThrow(()=>validatePublicConfig(env));
+  assert.doesNotThrow(()=>validatePublicConfig({...env,VITE_VERCEL_GIT_REPO_ID:'public-build-metadata'}));
   assert.throws(()=>validatePublicConfig({...env,VITE_SUPABASE_PUBLISHABLE_KEY:'sb_secret_never-expose'}),/Only a Supabase/);
   const roleKey=`x.${Buffer.from(JSON.stringify({role:'service_role'})).toString('base64url')}.x`;
   assert.throws(()=>validatePublicConfig({...env,VITE_SUPABASE_PUBLISHABLE_KEY:roleKey}),/Only a Supabase/);
   assert.throws(()=>validatePublicConfig({...env,VITE_DATABASE_PASSWORD:'secret'}),/Unexpected/);
   assert.throws(()=>validatePublicConfig({...env,VITE_SUPABASE_URL:'https://user:password@project.supabase.co/'}),/without credentials/);
   assert.throws(()=>validatePublicConfig({...env,VITE_SUPABASE_URL:'https://project.supabase.co.attacker.com/'}),/Use the HTTPS/);
+});
+test('production bundler excludes Vercel-prefixed metadata from browser code',async()=>{
+  const sentinel='adrianos-test-platform-metadata-do-not-bundle';
+  execFileSync(process.execPath,['scripts/build.mjs'],{env:{...process.env,VITE_VERCEL_GIT_REPO_ID:sentinel},stdio:'pipe'});
+  for(const file of (await readdir(new URL('../dist/assets/',import.meta.url))).filter(f=>f.endsWith('.js'))){
+    assert.ok(!(await readFile(new URL(`../dist/assets/${file}`,import.meta.url),'utf8')).includes(sentinel));
+  }
 });
 test('catalog seed is repeatable, read-only to visitors, and cannot open checkout',async()=>{
   const db=new PGlite();

@@ -1,6 +1,8 @@
 export function validatePublicConfig(env){
   const allowed=new Set(['VITE_SUPABASE_URL','VITE_SUPABASE_PUBLISHABLE_KEY']);
-  for(const name of Object.keys(env))if(name.startsWith('VITE_')&&!allowed.has(name))throw new Error(`Unexpected browser environment key: ${name}. Review before publishing.`);
+  // Vercel automatically adds VITE_VERCEL_* public deployment metadata.
+  // build.mjs disables automatic env exposure and defines only our two allowed keys.
+  for(const name of Object.keys(env))if(name.startsWith('VITE_')&&!allowed.has(name)&&!name.startsWith('VITE_VERCEL_'))throw new Error(`Unexpected browser environment key: ${name}. Review before publishing.`);
   const url=env.VITE_SUPABASE_URL;const key=env.VITE_SUPABASE_PUBLISHABLE_KEY;
   if(!url&&!key)return;
   if(!url||!key)throw new Error('Both public Supabase settings are required to connect a build.');

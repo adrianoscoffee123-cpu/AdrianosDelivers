@@ -10,6 +10,3 @@ test-output/
 .supabase/
 supabase/.temp/
 .env.local
-
-.vercel
-.env*
