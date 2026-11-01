@@ -1,5 +1,7 @@
 # Partial setup — November 1, 2026
 
+**Current result:** Supabase is set up and connected to the protected Vercel preview at https://adrianosdelivers-pg3i0dide-adrianos1.vercel.app (READY deployment `dpl_5KR3H6F8tppsCxRzwvnaEVXSchpC`). The deployed browser displays “Menu prices loaded from Adriano’s Supabase catalog” and has no console warnings/errors. Ordering remains closed. Google OAuth and GitHub owner authentication are still pending. A screenshot is saved locally in the ignored `test-output/connected-menu-preview.jpg`. Historical connection checks below explain the earlier blockers and should not be mistaken for the current status.
+
 ## Completed locally
 
 - Store pin: **10.423282164368267, 122.91901469110203**.
