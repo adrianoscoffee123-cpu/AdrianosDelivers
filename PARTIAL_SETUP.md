@@ -15,6 +15,10 @@
 
 ## Connection checks
 
+**Supabase connection completed:** the owner signed into the CLI. The verified dedicated project is `Adrianosdelivers` (`tewizylumylcvokweveh`, eu-west-1). Its application schema was empty before setup. The three prepared schema migrations plus the official catalog seed were applied atomically through `supabase db query`, with their versions recorded using `supabase migration repair`. A fourth migration, `20261101103543_advisors_hardening.sql`, resolves advisor findings. `supabase migration list --linked` confirms all four local/remote versions agree. Advisor output at warning level is now `No issues found`.
+
+Live verification confirms 126 products, 170 published choices, zero active choices, all six app tables protected with RLS, the confirmed shop pin, and `accepting_orders=false`. Public REST menu access returns 170 choices; anonymous order access returns HTTP 401. The publishable key and project URL are configured for Vercel Preview and Development only; no key values are recorded here. Google OAuth is not configured, so sign-in stays hidden. Browser testing on the connected localhost app confirmed Supabase-loaded pricing, selecting two 22 oz iced Spanish Lattes totals PHP 260, checkout is disabled, and the console has no warnings/errors. All 17 automated checks and the connected production build pass. GitHub owner authentication remains pending.
+
 **Latest update:** Vercel browser authorization succeeded. The workspace is now linked to `adrianos1/adrianosdelivers`, project ID `prj_NiiUyn9PQjc1V16aDVKzuO36g13K`, organization `team_NZB699YFdX4c7wWRwksXA0GI`. Development environment pull succeeded. The project currently has no configured app environment variables, so the partial preview uses the supplied menu and does not connect to Supabase. The historical checks below record the earlier state; Supabase and GitHub authentication still need completion.
 
 **Preview deployed and verified:** https://adrianosdelivers-jquxcq3tv-adrianos1.vercel.app (deployment `dpl_6AWebQ5FB82MKYnUJiin2dG2Bf7h`, state READY). Vercel Authentication remains enabled. Authenticated HTTP checks returned 200, confirmed the expected menu page and closed-ordering notice, verified the deployed CSP and other security headers, and confirmed an original menu image matches its source hash. A build check was corrected to permit Vercel's generated metadata while exposing only the two explicitly allowed public Supabase values to browser code. All 17 automated checks pass. This is a preview deployment, not a live business checkout or a Supabase-connected release. Actual browser layout and phone testing remain pending.
@@ -44,9 +48,10 @@ For a **new, empty, dedicated project**, apply and verify in this order:
 1. `supabase/migrations/001_delivery.sql` — baseline schema; run once only if those objects do not exist.
 2. `supabase/migrations/20261101100144_adrianos_catalog_setup.sql` — catalog fields and RPC hardening; run once.
 3. `supabase/migrations/20261101101316_trusted_variant_snapshots.sql` — records trusted size/flavor/category in quoted order items. Earlier committed migration contents are preserved.
-4. `supabase/catalog-seed.sql` — repeatable owner-supplied catalog import and closed-store pin setup.
-5. `supabase/verify-setup.sql` — read-only verification; expect 126 distinct products, 170 catalog rows, zero active rows and `accepting_orders=false`.
-6. Run the provider's security advisors and resolve findings before connecting public clients. Keep the `private` schema out of the Data API exposed schemas.
+4. `supabase/migrations/20261101103543_advisors_hardening.sql` — restricts an existing platform event-trigger function and optimizes the app policies.
+5. `supabase/catalog-seed.sql` — repeatable owner-supplied catalog import and closed-store pin setup.
+6. `supabase/verify-setup.sql` — read-only verification; expect 126 distinct products, 170 catalog rows, zero active rows and `accepting_orders=false`.
+7. Run the provider's security advisors and resolve findings before connecting public clients. Keep the `private` schema out of the Data API exposed schemas.
 
 If the project already has migration history or similarly named tables, inspect and reconcile it rather than re-running the baseline blindly. The previous initial draft uses a short migration filename; reconcile/import its version with the CLI only after inspecting remote migration history. Do not apply a remote migration through these notes without checking the intended project.
 

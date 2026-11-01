@@ -4,7 +4,7 @@ import { money,escapeHtml as e,findVariant,basketLines,hydrateBasket,filterProdu
 
 const $=selector=>document.querySelector(selector);
 const storageKey='adrianos-menu-bag-v1';
-const state={products:structuredClone(sourceProducts),basket:{},category:'all',query:'',client:null,user:null,role:null,catalogStatus:'Local menu · transcribed from the supplied menu photos',connection:'Not linked in this build',selected:null,quantity:1,sessionGeneration:0};
+const state={products:structuredClone(sourceProducts),basket:{},category:'all',query:'',client:null,user:null,role:null,catalogStatus:'Local menu · transcribed from the supplied menu photos',connection:'Not linked in this build',authEnabled:false,authStatus:'Not connected',selected:null,quantity:1,sessionGeneration:0};
 try{state.basket=hydrateBasket(state.products,localStorage.getItem(storageKey));}catch{/* Browsing works with storage disabled. */}
 let toastTimer;
 function toast(message){clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').hidden=false;toastTimer=setTimeout(()=>{$('#toast').hidden=true;},3500);}
@@ -57,7 +57,7 @@ function showOriginals(page=1){
 function updateOriginal(){const page=menuPages.find(p=>p.page===Number($('#menu-page-select').value))||menuPages[0];$('#menu-page-image').src=page.image;$('#menu-page-image').alt=`Adriano’s original menu: ${page.title}`;}
 function showInfo(html){$('#info-content').innerHTML=html;openDialog('#info-dialog');}
 function showSetup(){
-  showInfo(`<span class="eyebrow">PARTIAL SETUP</span><h2>A good start.</h2><p>The menu and shop location are ready to review. Live ordering stays closed in this release.</p><dl class="setup-list"><div><dt>Menu</dt><dd>126 products · 170 priced choices · 9 source pages</dd></div><div><dt>Store location</dt><dd>${e(shop.latitude)}, ${e(shop.longitude)}</dd></div><div><dt>Supabase</dt><dd>${e(state.connection)}</dd></div><div><dt>Ordering</dt><dd>Closed in this partial release</dd></div><div><dt>Delivery & packaging</dt><dd>Awaiting approved fees and service area</dd></div><div><dt>Staff workspaces</dt><dd>Database permissions prepared; admin and rider screens are next</dd></div></dl><p class="muted">The bag is a menu subtotal only. It does not submit orders, accept payments, or share a location.</p>`);
+  showInfo(`<span class="eyebrow">PARTIAL SETUP</span><h2>A good start.</h2><p>The menu and shop location are ready to review. Live ordering stays closed in this release.</p><dl class="setup-list"><div><dt>Menu</dt><dd>126 products · 170 priced choices · 9 source pages</dd></div><div><dt>Store location</dt><dd>${e(shop.latitude)}, ${e(shop.longitude)}</dd></div><div><dt>Supabase</dt><dd>${e(state.connection)}</dd></div><div><dt>Sign-in</dt><dd>${e(state.authStatus)}</dd></div><div><dt>Ordering</dt><dd>Closed in this partial release</dd></div><div><dt>Delivery & packaging</dt><dd>Awaiting approved fees and service area</dd></div><div><dt>Staff workspaces</dt><dd>Database permissions prepared; admin and rider screens are next</dd></div></dl><p class="muted">The bag is a menu subtotal only. It does not submit orders, accept payments, or share a location.</p>`);
 }
 function showAccount(){
   if(!state.client)return;
@@ -78,11 +78,18 @@ async function loadCloud(){
     const updated=structuredClone(sourceProducts);
     for(const product of updated){for(const variant of product.variants){const row=rows.get(variant.key);const cents=Math.round(Number(row.price)*100);if(!Number.isSafeInteger(cents)||cents<=0)throw new Error('Invalid catalog price');variant.price=cents;}}
     state.products=updated;state.connection='Connected · menu loaded from Supabase';state.catalogStatus='Menu prices loaded from Adriano’s Supabase catalog';
-    renderProducts();renderBag();$('#account-button').hidden=false;
+    renderProducts();renderBag();
+    try{
+      const settings=await fetch(new URL('/auth/v1/settings',url),{headers:{apikey:key},credentials:'omit'});
+      if(!settings.ok)throw new Error('Sign-in settings unavailable');
+      state.authEnabled=Boolean((await settings.json()).external?.google);
+      state.authStatus=state.authEnabled?'Google sign-in configured':'Google sign-in awaiting setup';
+    }catch{state.authStatus='Sign-in settings could not be verified';}
     const applyUser=async user=>{
       const generation=++state.sessionGeneration;state.user=user;state.role=null;
       if(user){const {data}=await state.client.from('staff_users').select('role').eq('user_id',user.id).maybeSingle();if(generation!==state.sessionGeneration)return;state.role=data?.role||null;}
       $('#account-button').textContent=user?'My account':'Sign in';
+      $('#account-button').hidden=!user&&!state.authEnabled;
     };
     state.client.auth.onAuthStateChange((_event,session)=>{queueMicrotask(()=>{void applyUser(session?.user||null);});});
     const {data:auth,error:authError}=await state.client.auth.getSession();if(authError)throw authError;await applyUser(auth.session?.user||null);

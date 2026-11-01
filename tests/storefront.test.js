@@ -6,7 +6,7 @@ import { build } from 'vite';
 
 test('built storefront supports search, variants, bag persistence, and closed ordering',async()=>{
   // Build to an ignored test directory. No server or cloud service is started.
-  await build({logLevel:'silent',build:{outDir:'test-output/storefront',emptyOutDir:true}});
+  await build({logLevel:'silent',envPrefix:[],define:{'import.meta.env.VITE_SUPABASE_URL':'""','import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY':'""'},build:{outDir:'test-output/storefront',emptyOutDir:true}});
   const html=await readFile(new URL('../test-output/storefront/index.html',import.meta.url),'utf8');
   const assets=await readdir(new URL('../test-output/storefront/assets/',import.meta.url));
   const script=await readFile(new URL(`../test-output/storefront/assets/${assets.find(f=>/^index-.*\.js$/.test(f))}`,import.meta.url),'utf8');
