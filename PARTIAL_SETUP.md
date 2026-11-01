@@ -15,6 +15,8 @@
 
 ## Connection checks
 
+**Latest update:** Vercel browser authorization succeeded. The workspace is now linked to `adrianos1/adrianosdelivers`, project ID `prj_NiiUyn9PQjc1V16aDVKzuO36g13K`, organization `team_NZB699YFdX4c7wWRwksXA0GI`. Development environment pull succeeded. The project currently has no configured app environment variables, so the partial preview uses the supplied menu and does not connect to Supabase. The historical checks below record the earlier state; Supabase and GitHub authentication still need completion.
+
 The plugin manager reports Supabase, GitHub and Vercel **installed and enabled**. However, no provider-specific project/database/repository tools are exposed to this chat. Plugin installation does not establish authentication for a separately installed local CLI.
 
 - Vercel CLI initially reported `loggedIn: false`, `linkedProject: null`. Project inspection attempted a device login; it was stopped without completing authentication or creating a project. Read-only integration discovery also attempted login in this environment, so no integration was installed.
