@@ -1,0 +1,17 @@
+{
+  "supabase": {
+    "projectName": "Adriano's delivers",
+    "projectRef": null
+  },
+  "vercel": {
+    "projectName": "adrianosdelivers",
+    "teamSlug": null,
+    "projectId": null
+  },
+  "github": {
+    "repository": "https://github.com/adrianoscoffee123-cpu/AdrianosDelivers",
+    "owner": "adrianoscoffee123-cpu",
+    "reviewBranch": "setup/menu-preview"
+  },
+  "orderingEnabled": false
+}

@@ -25,7 +25,7 @@ The plugin manager reports Supabase, GitHub and Vercel **installed and enabled**
 
 ## What is needed to link safely
 
-Identify the intended **Supabase project name/dashboard link**, **Vercel team/project name/dashboard link**, and **GitHub repository link**. Do not paste tokens, passwords, database passwords, OAuth client secrets, or service-role keys.
+The owner has confirmed the targets: Supabase **Adriano's delivers**, Vercel **adrianosdelivers**, and GitHub **https://github.com/adrianoscoffee123-cpu/AdrianosDelivers**. These are recorded in `setup-targets.json`. Provider-returned Supabase project ref, Vercel team and project ID must still be discovered through authenticated access; they are deliberately left null rather than guessed. Do not paste tokens, passwords, database passwords, OAuth client secrets, or service-role keys.
 
 Then either expose the connected provider tools in the chat/session, or authenticate the local provider CLIs using their normal browser flows. The local CLI binaries are installed in the ignored `.tools/` directory. Complete authentication directly with the provider; credentials are not part of this repository.
 
