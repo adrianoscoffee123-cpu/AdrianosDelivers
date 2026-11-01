@@ -6,7 +6,9 @@
   "vercel": {
     "projectName": "adrianosdelivers",
     "teamSlug": "adrianos1",
-    "projectId": "prj_NiiUyn9PQjc1V16aDVKzuO36g13K"
+    "projectId": "prj_NiiUyn9PQjc1V16aDVKzuO36g13K",
+    "previewUrl": "https://adrianosdelivers-jquxcq3tv-adrianos1.vercel.app",
+    "deploymentId": "dpl_6AWebQ5FB82MKYnUJiin2dG2Bf7h"
   },
   "github": {
     "repository": "https://github.com/adrianoscoffee123-cpu/AdrianosDelivers",
