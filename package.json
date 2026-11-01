@@ -1,0 +1,8 @@
+{
+  "name": "adrianos-delivers", "version": "0.1.0", "private": true, "type": "module",
+  "description": "Adriano’s menu and delivery system — partial setup with ordering closed.",
+  "scripts": { "dev": "vite --host 127.0.0.1", "build": "node scripts/build.mjs", "preview": "vite preview --host 127.0.0.1", "test": "node --test tests/*.test.js", "catalog:sql": "node scripts/catalog-sql.mjs" },
+  "dependencies": { "@supabase/supabase-js": "2.118.0", "leaflet": "1.9.4" },
+  "devDependencies": { "@electric-sql/pglite": "0.3.16", "vite": "8.3.5" },
+  "engines": { "node": ">=22.12.0" }
+}

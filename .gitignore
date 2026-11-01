@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.vercel/
+test-output/
+.npm-cache/
+.tools/
+.supabase/
+supabase/.temp/
+.env.local
